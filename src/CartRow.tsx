@@ -6,7 +6,7 @@ import Loading from "./Loading"
 
 declare module 'react-icons/hi' {
   interface IconBaseProps {
-    productid?: number;
+    productid?: string;
   }
 }
 
@@ -39,14 +39,13 @@ const  CartRow:FC<CartRowProps>=({
     onQuantityChange(productId, +event.target.value)
   }
 
-  function handleRemove(event:any) {
-    const productKey = event.currentTarget.getAttribute("productid");
-    const newCart = { ...cart }
-    delete newCart[productKey]
-    updateCart(newCart);
-    setLoading(true);
 
+  function handleRemove(event: React.MouseEvent<SVGElement>) {
+    const newCart = { ...cart };
+    delete newCart[productId];
+    updateCart(newCart);
   }
+
   if (loading) {
     return <Loading />
   }

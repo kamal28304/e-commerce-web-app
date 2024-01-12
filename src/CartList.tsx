@@ -42,7 +42,7 @@ const CartList:FC<CartListProps>=({ products, cart, updateCart }) =>{
           <span className="w-32 font-bold text-xl">Quantity</span>
           <span className="w-20 font-bold text-xl">Subtotal</span>
         </div>
-      </div>
+      l</div>
 
       <div>
         {products.map(function(items:any) {
