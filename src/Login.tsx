@@ -144,11 +144,12 @@ export const Login:FC<LoginProps>=({
   );
 }
 
- const FormikLogin= withFormik({
-  validationSchema: schema,
-  initialValues: initialValues,
-  handleSubmit: callLoginApi,
-})(Login);
+ const FormikLogin = withFormik({
+   mapPropsToValues: () => initialValues,
+   validationSchema: schema,
+   handleSubmit: callLoginApi,
+ })(Login);
+
 
 export default withAlert(withUser(FormikLogin));
 

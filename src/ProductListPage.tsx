@@ -8,15 +8,15 @@ import { range } from "lodash"
 import Input from "./Input"
 import { HiArrowCircleRight, HiArrowCircleLeft } from "react-icons/hi";
 
-type Product={
+type Product = {
   id: number;
   thumbnail: string;
-    price: number;
-    title: string;
-    length: number
-  description?:string
-  rating?:number
-  category?:string
+  price: number;
+  title: string;
+  length: number
+  description?: string
+  rating?: number
+  category?: string
 }
 type ProductDataState = {
   data: Product[]
@@ -27,13 +27,14 @@ type ProductDataState = {
 const ProductListPage = () => {
   const [loading, setLoading] = useState(true);
 
-  const [productData, setProductData] = useState<ProductDataState>({data:[],meta:undefined});
+  const [productData, setProductData] = useState<ProductDataState>({ data: [] });
 
   const [searchParams, setSearchParams] = useSearchParams()
   const params = Object.fromEntries([...searchParams])
 
   console.log("params", params)
   let { query, sort, page } = params
+  console.log("query", query)
   query = query || '';
   sort = sort || 'default';
   page = page || "1";
@@ -56,19 +57,18 @@ const ProductListPage = () => {
     getProductList(sortBy, +page, query, sortType).then(
       function(products: any) {
         setProductData(products);
-
         console.log(productData)
         setLoading(false);
       }).catch(() => (setLoading(false)));
-
   }, [sort, query, page]);
 
 
 
   function handleQuery(event: ChangeEvent<HTMLInputElement>) {
+    console.log("event.target.value", event.target.value)
     // const newParams ={...params,query: event.target.value, page:1}
     // console.log("newParam",newParams)
-    setSearchParams({ ...params, query: event.target.value, page: 1 } as any, { replace: false });
+    setSearchParams({ ...params, query: event.target.value, page: "1" }, { replace: false });
   }
 
   function handleSort(event: ChangeEvent<HTMLSelectElement>) {
@@ -114,11 +114,11 @@ const ProductListPage = () => {
 
 
       <div className="flex space-x-2">
-        {+page > 1 && <button onClick={() => { setSearchParams({ page: +page - 1 } as any) }} className="text-4xl text-green"><HiArrowCircleLeft /></button>}
+        {+page > 1 && <button onClick={() => { setSearchParams({ page: String(+page - 1) }) }} className="text-4xl text-green"><HiArrowCircleLeft /></button>}
         {range(1, productData.meta.last_page + 1).map((pageNum) => <Link
           key={pageNum} className={"m-1 p-2 " + (pageNum === +page ? "bg-red-500" : "bg-indigo-500")} to={"?" + new URLSearchParams({ ...params, page: pageNum } as any)}>{pageNum}</Link>)}
 
-        {page < productData.meta.last_page && <button onClick={() => { setSearchParams({ page: page + 1 }) }} className="text-4xl text-green"><HiArrowCircleRight /></button>}
+        {page < productData.meta.last_page && <button onClick={() => { setSearchParams({ page: String(+page + 1) }) }} className="text-4xl text-green"><HiArrowCircleRight /></button>}
 
       </div>
     </div>

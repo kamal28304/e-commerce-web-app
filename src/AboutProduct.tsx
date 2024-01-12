@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, ChangeEvent } from "react";
+import  { useState, useEffect, FC, ChangeEvent } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
@@ -24,7 +24,7 @@ type ProductState={
 const AboutProduct:FC<AboutProductProps>=({ handleAddToCart }) =>{
   const id = +useParams<{id:any}>().id;
   const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState<ProductState>([]);
+  const [product, setProduct] = useState<ProductState | null>(null);
 
   const [count, setCount] = useState(1);
 

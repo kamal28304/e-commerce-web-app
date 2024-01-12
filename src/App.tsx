@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
@@ -14,7 +14,7 @@ import AuthRoute from "./AuthRoute"
 import UserProvider from "./providers/UserProvider"
 import AlertProvider from "./providers/AlertProvider"
 import CartProvider from "./providers/CartProvider"
-import Test from "./Test"
+
 
 
 function App() {
@@ -28,10 +28,10 @@ function App() {
           
 
           <Header />
-          <div className="sm:p-8 p-5 bg-gray-300 min-h-screen">
+          <div className="sm:p-8 p-5 bg-gray-300 min-h-screen md:h-auto">
 
             <Routes>
-              <Route path="/Test" element={<Test />} />
+              
               <Route index element={<UserRoute> <ProductListPage /> </UserRoute>} />
               <Route path="/AboutProduct/:id" element={<AboutProduct />} />
               <Route path="/Login" element={<AuthRoute> <Login /> </AuthRoute>} />

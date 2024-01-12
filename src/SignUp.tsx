@@ -50,12 +50,12 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
 })
 
-const initialValues  = {
+{/*const initialValues  = {
   email: "",
   password: "",
   fullName: "",
-  confirmPassword: "",
-} 
+  confirmPassword : "",
+}*/}
 
 export const SignUp:FC<SignUpProps>=({
   handleSubmit,
@@ -151,7 +151,7 @@ export const SignUp:FC<SignUpProps>=({
 
 const EasySignUp  = withFormik({
   validationSchema: schema,
-  initialValues : initialValues ,
+//  initialValues,
   handleSubmit: callSignUpApi,
 })(SignUp)
 export default withAlert(withUser(EasySignUp));

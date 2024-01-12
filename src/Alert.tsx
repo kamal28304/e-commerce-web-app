@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import  { FC, useEffect } from "react";
 import { IconType } from "react-icons";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdOutlineDangerous } from "react-icons/md"
@@ -36,7 +36,7 @@ const themeMap:ThemeMapData = {
 const Alert:FC<AlertProps> =({ alert, removeAlert }):any => {
  
  const {type,message} = alert;
-  const {color,Icon} = themeMap[type]
+  const {color,Icon} = themeMap[type as keyof ThemeMapData]
   
   useEffect(() => {
     if(alert){

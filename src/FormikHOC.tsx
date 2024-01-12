@@ -4,7 +4,7 @@ import { useField } from "formik";
 
 type OutgoingComponentProps={
   name:string;
-  id:number;
+  id:string;
   className:string;
   label:string
 }

@@ -12,11 +12,11 @@ import axios from "axios";
 
 }
 
-export function getProductList( 
+export async function getProductList( 
   sortBy?:any ,
   page?:number,
-  sortType?:any,
   search?:any,
+  sortType?:any,
 ){
 
    let params:GetProductsProp = {};
@@ -26,6 +26,7 @@ export function getProductList(
   }
   
   if (search) {
+    console.log("search",search)
     params.search=search;
   }
   
@@ -47,13 +48,13 @@ params ,
 }
 
 
-export function getProductData(id:string) {
+export async function getProductData(id:string) {
   return axios.get("https://myeasykart.codeyogi.io/product/" + id).then(function(response) {
       return response.data;
     });
 }
 
-      export function getProductByIds(ids:any){
+      export async function getProductByIds(ids:any){
         console.log(ids)
         const comaSeperatedIds=ids.join();
         return axios.get("https://myeasykart.codeyogi.io/products/bulk",{

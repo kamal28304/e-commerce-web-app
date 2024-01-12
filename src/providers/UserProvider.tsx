@@ -33,12 +33,23 @@ const  UserProvider:FC<UserProviderProps>=({ children }) =>{
   if (loading) {
     return <Loading />
   }
+  const contextValue = {
+    user,
+    setUser,
+    map: (children: any, fn: any) => children,
+    forEach: (children: any, fn: any) => {},
+    count: (children: any) => 0,
+    only: (children: any) => children,
+    toArray: (children: any) => [],
+  };
+
 
   return (
     <div>
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={contextValue}>
         {children}
       </UserContext.Provider>
+
     </div>
   )
 }
